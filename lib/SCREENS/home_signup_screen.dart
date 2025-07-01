@@ -21,7 +21,7 @@ class _HomeSignUpScreen extends State<HomeSignUpScreen> {
               height: 320,
               child: Center(
                 child: Image.asset(
-                  'assets/images/illustration.png', // Add your image here
+                  'assets/images/mobile.webp', // Add your image here
                   height: 250,
                   fit: BoxFit.contain,
                 ),

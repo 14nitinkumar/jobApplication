@@ -27,13 +27,36 @@ class _Splash_Screen extends State<Splash_Screen> {
       body: Container(
         color: Colors.white,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Center(child: Image.asset('assets/images/logo.png'),),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 180, 0, 0),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  // width: 200,
+                ),
+              ),
+            ),
+            // SizedBox(
+            //   height: 300,
+            // ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 160, 0, 0),
+              child: Text(
+                'Powered by Oyelabs',
+                style: TextStyle(
+                    // color: Colors.orange,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
             Text(
-              'PORTFOLIO',
+              'WITH LOVE ',
               style: TextStyle(
-                  color: Colors.orange,
-                  fontSize: 50,
+                  color: const Color.fromARGB(255, 113, 168, 196),
+                  // fontSize: 50,
                   fontWeight: FontWeight.bold),
             ),
           ],

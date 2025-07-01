@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:portfolio_application/portfolio_pa.dart';
+import 'package:task_application/SCREENS/home_signup_screen.dart';
 
 class Splash_Screen extends StatefulWidget {
   const Splash_Screen({super.key});
@@ -17,7 +17,7 @@ class _Splash_Screen extends State<Splash_Screen> {
 
     Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => Portfollio_1()));
+          context, MaterialPageRoute(builder: (context) => HomeSignUpScreen()));
     });
   }
 
@@ -26,14 +26,17 @@ class _Splash_Screen extends State<Splash_Screen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        child: Center(
-          child: Text(
-            'PORTFOLIO',
-            style: TextStyle(
-                color: Colors.orange,
-                fontSize: 50,
-                fontWeight: FontWeight.bold),
-          ),
+        child: Column(
+          children: [
+            Center(child: Image.asset('assets/images/logo.png'),),
+            Text(
+              'PORTFOLIO',
+              style: TextStyle(
+                  color: Colors.orange,
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
       ),
     );

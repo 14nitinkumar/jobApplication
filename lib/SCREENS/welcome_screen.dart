@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:task_application/SCREENS/home_signup_screen.dart';
+import 'package:task_application/SCREENS/location_screen.dart';
+import 'package:task_application/SCREENS/otp_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -22,7 +25,11 @@ class _WelcomeScreen extends State<WelcomeScreen> {
               // Back Arrow
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeSignUpScreen()));
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
@@ -48,7 +55,10 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                 child: ElevatedButton.icon(
                   onPressed: () {},
                   icon: const Icon(Icons.facebook, color: Colors.white),
-                  label: const Text('CONTINUE WITH FACEBOOK'),
+                  label: const Text(
+                    'CONTINUE WITH FACEBOOK',
+                    style: TextStyle(color: Colors.white),
+                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF4267B2),
                     padding: const EdgeInsets.symmetric(vertical: 16),
@@ -67,9 +77,9 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                 child: OutlinedButton.icon(
                   onPressed: () {},
                   icon: Image.asset(
-                    'assets/icons/google.png', // Replace with your own Google icon
-                    height: 20,
-                    width: 20,
+                    'assets/images/google.png', // Replace with your own Google icon
+                    height: 16,
+                    width: 16,
                   ),
                   label: const Text('CONTINUE WITH GOOGLE'),
                   style: OutlinedButton.styleFrom(
@@ -117,7 +127,12 @@ class _WelcomeScreen extends State<WelcomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LocationScreen()));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     padding: const EdgeInsets.symmetric(vertical: 16),
@@ -125,7 +140,10 @@ class _WelcomeScreen extends State<WelcomeScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text('LOG IN'),
+                  child: const Text(
+                    'LOG IN',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
 

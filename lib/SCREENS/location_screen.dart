@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_application/SCREENS/main_screen.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
@@ -53,7 +54,10 @@ class _LocationScreen extends State<LocationScreen> {
                 width: double.infinity,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    // Get current location logic here
+                    Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MainScreen()));
                   },
                   icon: const Icon(Icons.my_location),
                   label: const Text("Your current location"),

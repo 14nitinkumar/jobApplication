@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:task_application/SCREENS/otp_screen.dart';
+import 'package:task_application/SCREENS/welcome_screen.dart';
 
 class HomeSignUpScreen extends StatefulWidget {
   const HomeSignUpScreen({super.key});
@@ -9,22 +13,38 @@ class HomeSignUpScreen extends StatefulWidget {
 }
 
 class _HomeSignUpScreen extends State<HomeSignUpScreen> {
+  TextEditingController phonenumber = TextEditingController();
+  sendCode() async {
+    try {
+      await FirebaseAuth.instance.verifyPhoneNumber(
+          verificationCompleted: (PhoneAuthCredential credential) {},
+          verificationFailed: (FirebaseAuthException e) {
+            Get.snackbar('Error Occured:', e.code);
+          },
+          codeSent: (String vid, int? token) {
+            Get.to(OTPScreen(vid: vid));
+          },
+          codeAutoRetrievalTimeout: (vid) {});
+    } on FirebaseException catch (e) {
+      Get.snackbar('Error Occured:', e.code);
+    } catch (e) {
+      Get.snackbar('Error Occured:', e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFEAF3FF),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
-            // Illustration Image
             SizedBox(
               height: 320,
-              child: Center(
-                child: Image.asset(
-                  'assets/images/mobile.webp', // Add your image here
-                  height: 250,
-                  fit: BoxFit.contain,
-                ),
+              child: Image.asset(
+                'assets/images/home.png',
+                width: double.infinity, // Add your image here
+                fit: BoxFit.fill,
               ),
             ),
 
@@ -55,7 +75,22 @@ class _HomeSignUpScreen extends State<HomeSignUpScreen> {
                     const SizedBox(height: 20),
 
                     // Phone input
+                    // TextField(
+                    //   controller: phonenumber,
+                    //   keyboardType: TextInputType.phone,
+                    //   decoration: const InputDecoration(
+                    //     labelText: 'Enter Mobile Number',
+                    //     border: OutlineInputBorder(
+                    //       borderRadius: BorderRadius.all(Radius.circular(12)),
+                    //     ),
+                    //   ),
+                    //   onChanged: (value) {
+                    //     print('Phone number: $value');
+                    //   },
+                    // ),
+
                     IntlPhoneField(
+                      controller: phonenumber,
                       decoration: const InputDecoration(
                         labelText: 'Enter Mobile Number',
                         border: OutlineInputBorder(
@@ -67,13 +102,15 @@ class _HomeSignUpScreen extends State<HomeSignUpScreen> {
                         print(phone.completeNumber);
                       },
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
 
                     // Sign Up Button
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          sendCode();
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.black,
                           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -83,7 +120,7 @@ class _HomeSignUpScreen extends State<HomeSignUpScreen> {
                         ),
                         child: const Text(
                           'SIGN UP',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 16, color: Colors.white),
                         ),
                       ),
                     ),
@@ -110,7 +147,10 @@ class _HomeSignUpScreen extends State<HomeSignUpScreen> {
                           const Text("ALREADY HAVE AN ACCOUNT? "),
                           GestureDetector(
                             onTap: () {
-                              // Navigate to login screen
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => WelcomeScreen()));
                             },
                             child: const Text(
                               "LOG IN",

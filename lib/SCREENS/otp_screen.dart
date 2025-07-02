@@ -1,14 +1,39 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:task_application/SCREENS/home_signup_screen.dart';
+import 'package:task_application/SCREENS/location_screen.dart';
+import 'package:task_application/SCREENS/welcome_screen.dart';
 
 class OTPScreen extends StatefulWidget {
-  const OTPScreen({super.key});
+  final String vid;
+  const OTPScreen({super.key, required this.vid});
 
   @override
   State<OTPScreen> createState() => _OTPScreen();
 }
 
 class _OTPScreen extends State<OTPScreen> {
+  var otpCode = '';
+
+  signIn() async {
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: widget.vid, smsCode: otpCode);
+
+    try {
+      await FirebaseAuth.instance
+          .signInWithCredential(credential)
+          .then((value) {
+        Get.offAll(WelcomeScreen());
+      });
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar('Error Occured:', e.code);
+    } catch (e) {
+      Get.snackbar('Error Occured:', e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +47,11 @@ class _OTPScreen extends State<OTPScreen> {
               // Back button
               IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  // Navigator.pop(context);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomeSignUpScreen()));
                 },
                 icon: const Icon(Icons.arrow_back),
               ),
@@ -81,6 +110,9 @@ class _OTPScreen extends State<OTPScreen> {
                 ),
                 onChanged: (value) {
                   // handle change
+                  setState(() {
+                    otpCode = value;
+                  });
                 },
               ),
 
@@ -113,7 +145,10 @@ class _OTPScreen extends State<OTPScreen> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Verify and proceed logic
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LocationScreen()));
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
@@ -122,7 +157,10 @@ class _OTPScreen extends State<OTPScreen> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: const Text("VERIFY & PROCEED"),
+                  child: const Text(
+                    "VERIFY & PROCEED",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ],

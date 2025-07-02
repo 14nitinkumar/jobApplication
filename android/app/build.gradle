@@ -3,6 +3,7 @@ plugins {
     id "kotlin-android"
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services"
 }
 
 android {
@@ -24,10 +25,10 @@ android {
         applicationId = "com.example.task_application"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        minSdk = 23
+        targetSdk = flutter.targetSdkVersion 
+        versionCode = flutter.versionCode 
+        versionName = flutter.versionName 
     }
 
     buildTypes {
@@ -39,6 +40,41 @@ android {
     }
 }
 
-flutter {
-    source = "../.."
-}
+// flutter {
+//     source = "../.."
+// }
+
+// dependencies {
+//     implementation platform("com.google.firebase:firebase-bom:33.16.0")
+// }
+
+
+
+
+// android {
+//     namespace 'com.example.task_application'
+//     compileSdk = 33
+
+//     defaultConfig {
+//         applicationId = "com.example.task_application"
+//         minSdk = 23           // ✅ Correct
+//         targetSdk = 33        // ✅ Correct
+//         versionCode = 1
+//         versionName = "1.0"
+//     }
+
+//     buildTypes {
+//         release {
+//             signingConfig = signingConfigs.debug
+//         }
+//     }
+
+//     compileOptions {
+//         sourceCompatibility = JavaVersion.VERSION_1_8
+//         targetCompatibility = JavaVersion.VERSION_1_8
+//     }
+
+//     kotlinOptions {
+//         jvmTarget = "1.8"
+//     }
+// }

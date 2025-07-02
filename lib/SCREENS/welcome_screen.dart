@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:task_application/SCREENS/home_signup_screen.dart';
 import 'package:task_application/SCREENS/location_screen.dart';
-import 'package:task_application/SCREENS/otp_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});

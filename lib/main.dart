@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:task_application/SCREENS/home_signup_screen.dart';
 import 'package:task_application/SCREENS/splash_screen.dart';
 
 void main() async {

@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:task_application/SCREENS/main_screen.dart';
 import 'package:task_application/SCREENS/splash_screen.dart';
 
 void main() async {
@@ -24,11 +25,11 @@ class MyApp extends StatelessWidget {
         ),
         home: 
         // HomeSignUpScreen()
-            // MainScreen()
+            MainScreen()
             // LocationScreen()
             // OTPScreen()
             // WelcomeScreen()
-            Splash_Screen()
+            // Splash_Screen()
         // const MyHomePage(title: 'Flutter Demo Home Page'),
         );
   }
